@@ -16,25 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-session_start();
 
-//подключаем файлы
-include_once '../config/config.php';
-include_once '../config/db.php';
-include_once '../core/mainFunctions.php';
-$router = include_once '../core/Router.php';
-
-//определяем с каким контроллером будем работать
-echo '<pre>';
-echo $_SERVER['REQUEST_URI'] . "<br>";
-echo preg_match("~/[a-z]/[a-z]~", $_SERVER['REQUEST_URI']) . "<br>";
-if(preg_match("~/[a-z]/[a-z]~", $_SERVER['REQUEST_URI'])){
-    preg_replace("~/[a-z]/[a-z]~", $replacement, "$1,$2");
-    
-}else{
-    echo "no";
-}
-echo '</pre>';
-//определяем функцию контроллера
-
-
+return array(
+    'news/([a-z]+)/([0-9]+)' => 'news/view/$1/$2',
+//    'news/([0-9]+)' => 'news/view',
+    'news' => 'news/index',
+//    'products' => 'product/list'
+);

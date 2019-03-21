@@ -17,11 +17,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+include_once ROOT . '/models/News.php';
+
 /**
- * Description of MainController
+ * Description of NewsController
  *
  * @author vladislav
  */
-class MainController {
-    //put your code here
+class NewsController {
+
+    public function actionIndex() {
+        $newsList = array();
+        $newsList = News::getNewsList();
+
+        echo '<pre>';
+        print_r($newsList);
+        echo '</pre>';
+        return true;
+    }
+
+    public function actionView($category, $id) {
+
+        //echo $category;
+        //echo 'Просмотр одной новости';
+        function block(){
+            while (true){
+                $string = yield;
+                echo $string;
+            }
+        }
+        
+        $block = block();
+        $block->send("Hello PHP");
+        return true;
+    }
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2019 vladislav
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,3 +17,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * Description of ProductController
+ *
+ * @author vladislav
+ */
+class ProductController {
+    
+    public function actionList(){
+        return true;
+    }
+    
+}
