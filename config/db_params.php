@@ -19,7 +19,7 @@
 
 return array(
     'host' => 'localhost',
-    'dbname' => 'rasul',
+    'dbname' => 'strip',
     'user' => 'user',
     'password' => 'qwerty'
 );
