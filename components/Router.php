@@ -80,8 +80,7 @@ class Router {
                 }
                 //Создать объект, вызвать метод этого контроллера
                 $controllerObject = new $controllerName;
-
-
+                
                 $result = call_user_func_array(array($controllerObject, $actionName), $parametrs);
                 //$result = $controllerObject->$actionName($parametrs);
 

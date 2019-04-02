@@ -17,36 +17,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-include_once ROOT . '/models/News.php';
-
 /**
- * Description of NewsController
+ * Description of Db
  *
  * @author vladislav
  */
-class NewsController {
-
-    public function actionIndex() {
-        $newsList = array();
-        $newsList = News::getNewsList();
+class Db {
+    public static function getConnection(){
+        $paramsPath = ROOT . '/config/db_params.php';
+        $params = include $paramsPath;
         
-        require_once ROOT . '/views/news/index.php';
-
-        return true;
+        $dsn = "mysql:host=" . $params['host'] . ";dbname=" . $params['dbname'];
+        $db = new PDO($dsn, $params['user'], $params['password']);
+        
+        return $db;
     }
-
-    public function actionView($category, $id) {
-
-        //echo $category;
-        //echo 'Просмотр одной новости';
-        
-        $newsItem = News::getNewsItemById($id);
-        
-        echo '<pre>';
-        print_r($newsItem);
-        echo '</pre>';
-        
-        return true;
-    }
-
 }

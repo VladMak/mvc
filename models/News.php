@@ -1,6 +1,6 @@
 <?php
 
-/* 
+/*
  * Copyright (C) 2019 vladislav
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,47 +29,36 @@ class News {
      * @param type $id
      */
     public static function getNewsItemById($id){
-        $host = 'localhost';
-        $dbname = 'rasul';
-        $user = 'user';
-        $password = 'qwerty';
-        $db = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+        $id = intval($id);
         
-        $newsList = array();
-        
-        $result = $db->query('SELECT id, title, date, short_content'
-                . 'FROM news'
-                . 'ORDER BY date DESC'
-                . 'LIMIT 10');
-        
-        $i = 0;
-        while ($row = $result->fetch()){
-            $newsList[$i]['id'] = $row['id'];
-            $newsList[$i]['title'] = $row['title'];
-            $newsList[$i]['date'] = $row['date'];
-            $newsList[$i]['short_content'] = $row['short_content'];
-            $i++;
+        if($id){
+            
+            $db = Db::getConnection();
+
+            $result = $db->query('SELECT * FROM news WHERE id=' . $id);
+            
+            $result->setFetchMode(PDO::FETCH_ASSOC);
+
+            $newsItem = $result->fetch();
+
+            return $newsItem;
         }
         
-        return $newsList;
     }
     
     /**
      * Возвращает массив новостей
      */
     public static function getNewsList(){
-        $host = 'localhost';
-        $dbname = 'rasul';
-        $user = 'user';
-        $password = 'qwerty';
-        $db = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+        $db = Db::getConnection();
         
         $newsList = array();
         
-        $result = $db->query('SELECT id, title, date, short_content'
-                . 'FROM news'
-                . 'ORDER BY date DESC'
-                . 'LIMIT 10');
+        
+        $result = $db->query('SELECT id, title, date, short_content '
+                . 'FROM news '
+                . 'ORDER BY date DESC '
+                . 'LIMIT 3;');
         
         $i = 0;
         while ($row = $result->fetch()){

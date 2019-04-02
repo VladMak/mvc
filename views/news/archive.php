@@ -1,6 +1,6 @@
 <?php
 
-/*
+/* 
  * Copyright (C) 2019 vladislav
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,36 +17,3 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-include_once ROOT . '/models/News.php';
-
-/**
- * Description of NewsController
- *
- * @author vladislav
- */
-class NewsController {
-
-    public function actionIndex() {
-        $newsList = array();
-        $newsList = News::getNewsList();
-        
-        require_once ROOT . '/views/news/index.php';
-
-        return true;
-    }
-
-    public function actionView($category, $id) {
-
-        //echo $category;
-        //echo 'Просмотр одной новости';
-        
-        $newsItem = News::getNewsItemById($id);
-        
-        echo '<pre>';
-        print_r($newsItem);
-        echo '</pre>';
-        
-        return true;
-    }
-
-}
